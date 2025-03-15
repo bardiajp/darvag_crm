@@ -1,3 +1,4 @@
+import jdatetime
 from django.contrib import admin
 from django.db import transaction
 
@@ -14,9 +15,24 @@ class ItemInline(admin.StackedInline):
 
 # ---- Admin Panels ----
 class BaseProductAdmin(admin.ModelAdmin):
-    list_display = ('created_at', 'updated_at')
-    list_filter = ('created_at', 'updated_at')
-    readonly_fields = ('created_at', 'updated_at')
+
+    def display_create_date(self, obj):
+        if obj.created_at:
+            jalali_date = jdatetime.date.fromgregorian(date=obj.created_at)
+            return jalali_date.strftime('%Y-%m-%d')
+        return "-"
+
+    def display_update_date(self, obj):
+        if obj.updated_at:
+            jalali_date = jdatetime.date.fromgregorian(date=obj.updated_at)
+            return jalali_date.strftime('%Y-%m-%d')
+        return "-"
+
+    display_create_date.short_description = 'Created At'
+    display_update_date.short_description = 'Updated At'
+
+    list_display = ('display_create_date', 'display_update_date')
+    readonly_fields = ('display_create_date', 'display_update_date')
     ordering = ('-id',)
 
 

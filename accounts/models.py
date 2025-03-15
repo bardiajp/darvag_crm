@@ -6,6 +6,7 @@ from django.utils.translation import gettext as _
 from rest_framework.exceptions import ValidationError
 
 
+
 class BaseModel(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)

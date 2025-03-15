@@ -13,8 +13,8 @@ class BaseModel(models.Model):
 
 
 class ProductCategory(BaseModel):
-    name = models.CharField(_('Category Name'), max_length=50)
-    description = models.TextField(_('Category Description'), max_length=500, null=False, blank=False)
+    name = models.CharField(_('Name'), max_length=50)
+    description = models.TextField(_('Description'), max_length=500, null=False, blank=False)
     parent_category = models.ForeignKey('self', on_delete=models.SET_NULL, null=True, blank=True)
 
     class Meta:
@@ -27,8 +27,8 @@ class ProductCategory(BaseModel):
 
 
 class ProductGroup(BaseModel):
-    name = models.CharField(_('Group Name'), max_length=50)
-    description = models.TextField(_('Group Description'), max_length=500, null=False, blank=False)
+    name = models.CharField(_('Name'), max_length=50)
+    description = models.TextField(_('Description'), max_length=500, null=False, blank=False)
     parent_group = models.ForeignKey('self', on_delete=models.SET_NULL, null=True, blank=True)
 
     class Meta:
@@ -44,14 +44,14 @@ class Product(BaseModel):
     category = models.ForeignKey(ProductCategory, on_delete=models.SET_NULL, null=True, blank=True)
     group = models.ForeignKey(ProductGroup, on_delete=models.SET_NULL, null=True, blank=True)
     parent_product = models.ForeignKey('self', on_delete=models.SET_NULL, null=True, blank=True)
-    name = models.CharField(_('Product Name'), max_length=500, null=False, blank=False)
-    price = models.IntegerField(_('Product Price'), null=True, blank=True)
+    name = models.CharField(_('Name'), max_length=500, null=False, blank=False)
+    price = models.IntegerField(_('Price'), null=True, blank=True)
     product_no = models.CharField(_('Product No'), max_length=50, null=False, blank=False)
-    description = models.TextField(_('Product Description'), max_length=500, null=False, blank=False)
-    stock = models.PositiveIntegerField(_('Product Stock'), default=1)
-    tax = models.DecimalField(_('Product Tax'), default=0, max_digits=20, decimal_places=2, null=True, blank=True)
-    is_active = models.BooleanField(_('Product Active'), default=True)
-    image = models.ImageField(_('Product Image'), null=True, blank=True)
+    description = models.TextField(_('Description'), max_length=500, null=False, blank=False)
+    stock = models.PositiveIntegerField(_('Stock'), default=1)
+    tax = models.DecimalField(_('Tax'), default=0, max_digits=20, decimal_places=2, null=True, blank=True)
+    is_active = models.BooleanField(_('is active'), default=True)
+    image = models.ImageField(_('Image'), null=True, blank=True)
 
     class Meta:
         verbose_name = _('Product')
@@ -63,9 +63,9 @@ class Product(BaseModel):
 
 
 class PriceBook(BaseModel):
-    name = models.CharField(_('Price Book Name'), max_length=50, null=False, blank=False)
-    price = models.DecimalField(_('Price Book'), default=0, max_digits=20, decimal_places=2, null=True, blank=True)
-    discount = models.DecimalField(_('Price Book Discount'), default=0, max_digits=20, decimal_places=2, null=True,
+    name = models.CharField(_('Name'), max_length=50, null=False, blank=False)
+    price = models.DecimalField(_('Price'), default=0, max_digits=20, decimal_places=2, null=True, blank=True)
+    discount = models.DecimalField(_('Discount'), default=0, max_digits=20, decimal_places=2, null=True,
                                    blank=True)
 
     class Meta:
@@ -81,13 +81,13 @@ class Item(BaseModel):
     quote = models.ForeignKey(Quote, on_delete=models.SET_NULL, null=True, blank=True, related_name='items')
     invoice = models.ForeignKey(Invoice, on_delete=models.SET_NULL, null=True, blank=True)
     product = models.ForeignKey(Product, on_delete=models.SET_NULL, null=True, blank=True)
-    quantity = models.PositiveIntegerField(_('Item Quantity'), default=1)
-    item_price = models.DecimalField(_('Item Price'), default=0, max_digits=20, decimal_places=2, null=True, blank=True)
+    quantity = models.PositiveIntegerField(_('Quantity'), default=1)
+    item_price = models.DecimalField(_('Price'), default=0, max_digits=20, decimal_places=2, null=True, blank=True)
     total_price = models.DecimalField(_('Total Price'), default=0, max_digits=20, decimal_places=2, null=True,
                                       blank=True)
     price_book = models.ForeignKey(PriceBook, on_delete=models.SET_NULL, null=True, blank=True)
     period = models.IntegerField(null=True, blank=True)
-    comment = models.TextField(_('Item Comment'), max_length=500, null=True, blank=True)
+    comment = models.TextField(_('Comment'), max_length=500, null=True, blank=True)
 
     class Meta:
         verbose_name = _('Item')

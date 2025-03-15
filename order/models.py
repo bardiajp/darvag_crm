@@ -12,7 +12,7 @@ class StatusChoices(models.IntegerChoices):
     REJECTED = 4, _("Rejected")
     EXPIRED = 5, _("Expired")
     CONVERTED = 6, _("Converted")
-    CANCELLED = 7, _("Canceled")
+    CANCELLED = 7, _("Cancelled")
 
 
 class StageChoices(models.IntegerChoices):

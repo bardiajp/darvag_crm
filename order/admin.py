@@ -1,3 +1,4 @@
+import jdatetime
 from django.contrib import admin
 from django.db import transaction
 
@@ -20,8 +21,23 @@ class InvoiceInline(admin.TabularInline):
 # ---- Admin Panels ----
 
 class BaseOrderAdmin(admin.ModelAdmin):
-    list_display = ('created_at', 'updated_at')
-    list_filter = ('created_at', 'updated_at')
+
+    def display_create_date(self, obj):
+        if obj.created_at:
+            jalali_date = jdatetime.date.fromgregorian(date=obj.created_at)
+            return jalali_date.strftime('%Y-%m-%d')
+        return "-"
+
+    def display_update_date(self, obj):
+        if obj.updated_at:
+            jalali_date = jdatetime.date.fromgregorian(date=obj.updated_at)
+            return jalali_date.strftime('%Y-%m-%d')
+        return "-"
+
+    display_create_date.short_description = 'Created At'
+    display_update_date.short_description = 'Updated At'
+
+    list_display = ('display_create_date', 'display_update_date')
     ordering = ('id',)
     search_fields = ('id',)
 
@@ -34,11 +50,12 @@ class PotentialAdmin(BaseOrderAdmin):
 
 @admin.register(Quote)
 class QuoteAdmin(BaseOrderAdmin):
-    list_display = ('id', 'subject', 'stage', 'status', 'price_per_item', 'total_price', 'discount', 'final_price',
+    list_display = ('id', 'subject', 'stage', 'status', 'total_price', 'discount',
+                    'display_discount_rate', 'final_price',
                     'is_active') + BaseOrderAdmin.list_display
     search_fields = BaseOrderAdmin.search_fields + ('subject', 'stage', 'status')
     list_filter = ('id', 'status', 'stage', 'is_active') + BaseOrderAdmin.list_filter
-    readonly_fields = ("final_price",)
+    readonly_fields = ("total_price", "final_price")
     inlines = (ItemInline,)
 
     def save_formset(self, request, form, formset, change):
@@ -76,11 +93,16 @@ class QuoteAdmin(BaseOrderAdmin):
             self.calculate_final_price(obj)
             super().save_model(request, obj, form, change)
 
-    def price_per_item(self, obj):
-        item_price = sum(item.item_price for item in obj.items.all())
-        return item_price
+    def display_discount_rate(self, obj):
+        print(f'{obj.discount=} {obj.total_price=}')
+        if obj.discount_rate:
+            return f'{obj.discount_rate:.2f}%'
+        elif obj.discount:
+            return f'{(float(obj.discount) / float(obj.total_price)) * 100:.2f}%'
+        else:
+            return ''
 
-    price_per_item.short_description = 'Price per item'
+    display_discount_rate.short_description = 'Discount rate'
 
 
 @admin.register(Invoice)
