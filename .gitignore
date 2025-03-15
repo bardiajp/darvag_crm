@@ -1,2 +1,11 @@
 .env
 .venv
+static/admin
+static/admin_interface
+static/ckeditor
+static/colorfield
+static/grappelli
+static/jazzmin
+static/streamfield
+static/rest_framework
+static/vendor
