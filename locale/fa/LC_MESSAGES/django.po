@@ -1,0 +1,385 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-03-15 09:57+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: accounts/models.py:19
+msgid "First Name"
+msgstr "نام"
+
+#: accounts/models.py:20
+msgid "Last Name"
+msgstr "نام خانوادگی"
+
+#: accounts/models.py:21
+msgid "Birth Date"
+msgstr "تاریخ تولد"
+
+#: accounts/models.py:22 accounts/models.py:62
+msgid "Mobile Number"
+msgstr "شماره موبایل"
+
+#: accounts/models.py:23 accounts/models.py:63
+msgid "Phone Number"
+msgstr "شماره تلفن"
+
+#: accounts/models.py:24
+msgid "Email Address"
+msgstr "آدرس ایمیل"
+
+#: accounts/models.py:25 accounts/models.py:64
+msgid "Address"
+msgstr "آدرس"
+
+#: accounts/models.py:26 accounts/models.py:65
+msgid "City"
+msgstr "شهر"
+
+#: accounts/models.py:27 accounts/models.py:66
+msgid "State"
+msgstr "استان"
+
+#: accounts/models.py:28 accounts/models.py:67
+msgid "Zip Code"
+msgstr "کد پستی"
+
+#: accounts/models.py:33
+msgid "User"
+msgstr "کاربر"
+
+#: accounts/models.py:34
+msgid "Users"
+msgstr "کاربرها"
+
+#: accounts/models.py:50
+msgid "Birthday cannot be in the future!"
+msgstr ""
+
+#: accounts/models.py:52
+msgid "Age cannot be negative!"
+msgstr "سن نمیتواند کوچکتر از صفر باشد"
+
+#: accounts/models.py:57 product/models.py:16 product/models.py:30
+#: product/models.py:47 product/models.py:66
+msgid "Name"
+msgstr "نام"
+
+#: accounts/models.py:58
+msgid "Company No"
+msgstr "شماره شرکت"
+
+#: accounts/models.py:60
+msgid "Industry"
+msgstr "صنعت"
+
+#: accounts/models.py:61
+msgid "Register Code"
+msgstr "کد ثبت"
+
+#: accounts/models.py:68
+msgid "Is Active"
+msgstr "فعال است"
+
+#: accounts/models.py:71
+msgid "Company"
+msgstr "شرکت"
+
+#: accounts/models.py:72
+msgid "Companies"
+msgstr "شرکت ها"
+
+#: order/models.py:9
+msgid "Draft"
+msgstr ""
+
+#: order/models.py:10 order/models.py:19
+msgid "Pending"
+msgstr "معلق"
+
+#: order/models.py:11 order/models.py:20
+msgid "Approved"
+msgstr "تایید شده"
+
+#: order/models.py:12 order/models.py:26
+msgid "Rejected"
+msgstr "رد شده"
+
+#: order/models.py:13 order/models.py:24
+msgid "Expired"
+msgstr "منقضی شده"
+
+#: order/models.py:14
+msgid "Converted"
+msgstr "تبدیل شده"
+
+#: order/models.py:15 order/models.py:21
+msgid "Cancelled"
+msgstr "لغو شده"
+
+#: order/models.py:22
+msgid "Sent"
+msgstr "ارسال شده"
+
+#: order/models.py:23
+msgid "Paid"
+msgstr "پرداخت شده"
+
+#: order/models.py:25
+msgid "Processing"
+msgstr "در حال انجام"
+
+#: order/models.py:27
+msgid "Completed"
+msgstr "انجام شده"
+
+#: order/models.py:31
+msgid "Created at"
+msgstr "تاریخ ایجاد"
+
+#: order/models.py:32
+msgid "Updated at"
+msgstr "تاریخ بروزرسانی"
+
+#: order/models.py:39
+msgid "Potential name"
+msgstr "نام فرصت قروش"
+
+#: order/models.py:40
+msgid "Potential description"
+msgstr "توضیحات فرصت فروش"
+
+#: order/models.py:43
+msgid "Potential status"
+msgstr "وضعیت فرصت فروش"
+
+#: order/models.py:46
+msgid "Potential"
+msgstr "فرصت فروش"
+
+#: order/models.py:47
+msgid "Potentials"
+msgstr "فرصت های فروش"
+
+#: order/models.py:58
+msgid "Quote subject"
+msgstr "موضوع پیش فاکتور"
+
+#: order/models.py:59
+msgid "Quote stage"
+msgstr "مرحله پیش فاکتور"
+
+#: order/models.py:61 order/models.py:66
+msgid "Quote status"
+msgstr "وضعیت پیش فاکتور"
+
+#: order/models.py:63
+msgid "Quote address"
+msgstr "آٔدرس پیش فاکتور"
+
+#: order/models.py:64
+msgid "Quote description"
+msgstr "توضیحات پیش فاکتور"
+
+#: order/models.py:65
+msgid "Quote terms conditions"
+msgstr "قوانین و شرایط پیش فاکتور"
+
+#: order/models.py:67
+msgid "Quote export file"
+msgstr "فایل خروجی پیش فاکتور"
+
+#: order/models.py:68 order/models.py:107
+msgid "Total price"
+msgstr "مبلغ کل"
+
+#: order/models.py:70 order/models.py:108 product/models.py:52
+msgid "Tax"
+msgstr "مالیات"
+
+#: order/models.py:71 order/models.py:109 product/models.py:68
+msgid "Discount"
+msgstr "تخفیف"
+
+#: order/models.py:72 order/models.py:110
+msgid "Discount rate"
+msgstr "درصد تخفیف"
+
+#: order/models.py:73 order/models.py:111
+msgid "Final price"
+msgstr "مبلغ نهایی"
+
+#: order/models.py:76
+msgid "Quote"
+msgstr "پیش فاکتور"
+
+#: order/models.py:77
+msgid "Quotes"
+msgstr "پیش فاکتور ها"
+
+#: order/models.py:83
+msgid "You can only set either discount or discount_rate, not both."
+msgstr ""
+
+#: order/models.py:85
+msgid "You must set either discount or discount_rate."
+msgstr ""
+
+#: order/models.py:96
+msgid "Invoice number"
+msgstr "شماره فاکتور"
+
+#: order/models.py:97
+msgid "Invoice subject"
+msgstr "موضوع فاکتور"
+
+#: order/models.py:98
+msgid "Invoice stage"
+msgstr "مرحله فاکتور"
+
+#: order/models.py:100 order/models.py:102
+msgid "Invoice status"
+msgstr "وضعیت فاکتور"
+
+#: order/models.py:103
+msgid "Invoice address"
+msgstr "آدرس فاکتور"
+
+#: order/models.py:104
+msgid "Invoice description"
+msgstr "توضیحات فاکتور"
+
+#: order/models.py:105
+msgid "Invoice terms conditions"
+msgstr "قوانین و شرایط فاکتور"
+
+#: order/models.py:106
+msgid "Invoice export file"
+msgstr "فایل خروجی فاکتور"
+
+#: order/models.py:114
+msgid "Invoice"
+msgstr "فاکتور"
+
+#: order/models.py:115
+msgid "Invoices"
+msgstr "فاکتور ها"
+
+#: product/models.py:8
+msgid "Created At"
+msgstr "تاریخ ایجاد"
+
+#: product/models.py:9
+msgid "Updated At"
+msgstr "تاریخ بروزرسانی"
+
+#: product/models.py:17 product/models.py:31 product/models.py:50
+msgid "Description"
+msgstr "توضیحات"
+
+#: product/models.py:21
+msgid "Category"
+msgstr "دسته بندی"
+
+#: product/models.py:22
+msgid "Categories"
+msgstr "دسته بندی ها"
+
+#: product/models.py:35
+msgid "Group"
+msgstr "گروه کالا"
+
+#: product/models.py:36
+msgid "Groups"
+msgstr "گروه های کالا"
+
+#: product/models.py:48 product/models.py:67 product/models.py:85
+msgid "Price"
+msgstr "مبلغ"
+
+#: product/models.py:49
+msgid "Product No"
+msgstr "شماره کالا"
+
+#: product/models.py:51
+msgid "Stock"
+msgstr "موجودی"
+
+#: product/models.py:53
+#, fuzzy
+#| msgid "Is Active"
+msgid "is active"
+msgstr "فعال است"
+
+#: product/models.py:54
+msgid "Image"
+msgstr "تصویر"
+
+#: product/models.py:57
+msgid "Product"
+msgstr "کالا"
+
+#: product/models.py:58
+msgid "Products"
+msgstr "کالا ها"
+
+#: product/models.py:72
+msgid "Price Book"
+msgstr "دفترچه قیمت"
+
+#: product/models.py:73
+msgid "Price Books"
+msgstr "دفاتر قیمت"
+
+#: product/models.py:84
+#, fuzzy
+#| msgid "Item Quantity"
+msgid "Quantity"
+msgstr "تعداد"
+
+#: product/models.py:86
+msgid "Total Price"
+msgstr "مبلغ کل"
+
+#: product/models.py:90
+msgid "Comment"
+msgstr "یادداشت"
+
+#: product/models.py:93
+msgid "Item"
+msgstr "آیتم"
+
+#: product/models.py:94
+msgid "Items"
+msgstr "آیتم ها"
+
+#, fuzzy
+#~| msgid "Is Active"
+#~ msgid "Active"
+#~ msgstr "فعال است"
+
+#~ msgid "Product Name"
+#~ msgstr "نام کالا"
+
+#~ msgid "Product Price"
+#~ msgstr "مبلغ"
+
+#~ msgid "Category Description"
+#~ msgstr "توضیحات "
+
+#~ msgid "Canceled"
+#~ msgstr "لغو شده"
