@@ -10,7 +10,7 @@ from .models import Item, Product, ProductCategory, ProductGroup, PriceBook
 class ItemInline(admin.StackedInline):
     model = Item
     extra = 0
-    readonly_fields = ('total_price',)
+    readonly_fields = ('total_price', 'invoice')
 
 
 # ---- Admin Panels ----

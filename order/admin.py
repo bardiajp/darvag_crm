@@ -1,9 +1,13 @@
+from django.urls import reverse
+
 import jdatetime
 from django.contrib import admin
 from django.db import transaction
+from django.utils.html import format_html
 
 from product.admin import ItemInline
 from .models import Quote, Invoice, Potential
+from .views import QuoteView
 
 
 # ---- InLInes ----
@@ -51,12 +55,16 @@ class PotentialAdmin(BaseOrderAdmin):
 @admin.register(Quote)
 class QuoteAdmin(BaseOrderAdmin):
     list_display = ('id', 'subject', 'stage', 'status', 'total_price', 'discount',
-                    'display_discount_rate', 'final_price',
+                    'display_discount_rate', 'final_price', 'quote_details',
                     'is_active') + BaseOrderAdmin.list_display
     search_fields = BaseOrderAdmin.search_fields + ('subject', 'stage', 'status')
     list_filter = ('id', 'status', 'stage', 'is_active') + BaseOrderAdmin.list_filter
     readonly_fields = ("total_price", "final_price")
     inlines = (ItemInline,)
+
+    def quote_details(self, obj):
+        url = f"/quote-details/{obj.id}"
+        return format_html("<a target='_blank' class='btn btn-primary' href='{}'>Details</a>", url)
 
     def save_formset(self, request, form, formset, change):
         with transaction.atomic():
@@ -71,14 +79,20 @@ class QuoteAdmin(BaseOrderAdmin):
 
     @staticmethod
     def calculate_final_price(obj):
-        total_price = sum(item.total_price for item in obj.items.all())
+        total_price = 0
+        try:
+            total_price = sum(item.total_price for item in obj.items.all())
+            obj.total_price = total_price
+        except:
+            pass
+
         obj.total_price = total_price
 
         if obj.discount is not None and obj.discount > 0:
             discount_amount = obj.discount
         elif obj.discount_rate is not None and obj.discount_rate > 0:
-            discount_amount = (total_price * obj.discount_rate) / 100
-            obj.discount = obj.total_price - discount_amount
+            discount_amount = (total_price * obj.discount_rate ) / 100
+            obj.discount = discount_amount
         else:
             discount_amount = 0
 
@@ -98,7 +112,7 @@ class QuoteAdmin(BaseOrderAdmin):
         if obj.discount_rate:
             return f'{obj.discount_rate:.2f}%'
         elif obj.discount:
-            return f'{(float(obj.discount) / float(obj.total_price)) * 100:.2f}%'
+            return f'{(float(obj.discount) / float(obj.total_price or 1)) * 100:.2f}%'
         else:
             return ''
 

@@ -1,0 +1,406 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>فاکتور فروش</title>
+    <style type="text/css">
+        @font-face {
+            font-family: "darvag";
+            src: url("{% static 'fonts/1.ttf' %}") format('truetype');
+            font-weight: bold;
+            font-style: normal;
+        }
+
+        body {
+            font-family: 'darvag', Tahoma, sans-serif;
+            direction: rtl;
+            text-align: right;
+            margin: 0;
+            padding: 0;
+            display: flex;  
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .persian-numbers {
+            font-variant-numeric: tabular-nums;
+            unicode-bidi: plaintext;
+        }
+
+        #product_table td {
+            border: 1px solid #f3f3f3 !important;
+        }
+
+        .PricingTable {
+            flex-basis: 30%;
+            margin: 0;
+        }
+
+        .SubNameTdH, .SubNameTdR {
+            width: 15% !important;
+        }
+
+        .SubDescriptionTdH, .SubDescriptionTdR {
+            width: 75% !important;
+        }
+
+        .SubQtyTdH, .SubQtyTdR {
+            width: 5% !important;
+        }
+
+        .SubUnitTdH, .SubUnitTdR {
+            width: 5% !important;
+        }
+
+        .PaymentInfo {
+            flex-basis: 30%;
+            list-style-type: none;
+            border: 1px solid black;
+            margin: 0;
+            padding: 10px;
+            width: 200px;
+        }
+
+        @media print {
+            .PricingSection {
+                display: flex;
+                justify-content: space-between;
+                flex-wrap: nowrap;
+            }
+
+            .PricingTable {
+                flex-basis: 50%;
+            }
+
+            .PaymentInfo {
+                list-style-type: none;
+                flex-basis: 30%;
+                width: 300px;
+            }
+        }
+
+        .SubProductTable {
+            overflow: hidden;
+            height: 100%;
+            border: 1px solid #F2F2F2 !important;
+            text-align: center;
+            font-size: 16px;
+        }
+
+        .SubProductTable td {
+            border: 1px solid #F2F2F2 !important;
+        }
+
+        .SubProductsHeaderRow {
+            background-color: #F2F2F2;
+            text-align: center;
+        }
+
+        .SubProductsHeaderTd {
+            background-color: #F2F2F2;
+            text-align: center;
+        }
+
+        .SubProductsRowTd {
+            background-color: #ffffff;
+            text-align: left;
+        }
+
+        .SubProductsHeaderText {
+            background-color: #F2F2F2;
+            text-align: center;
+            font-size: 16px;
+        }
+
+        .SubProductsRowText {
+            font-family: 'Yekan', Tahoma, sans-serif;
+            text-align: left;
+            font-size: 16px;
+        }
+
+        .SubQtyTdR .SubProductsRowText,
+        .SubUnitTdR .SubProductsRowText, .SubQtyTdR, .SubUnitTdR {
+            text-align: center !important;
+        }
+
+        .LogoTd.img {
+            width: 150px !important;
+        }
+
+        .container {
+            width: 90%;
+            height: 100%;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            box-shadow: none;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 14px;
+        }
+
+        .header img {
+            width: 200px;
+        }
+
+        .header-info {
+            text-align: right;
+        }
+
+        .header-info p {
+            margin: 3px 0;
+            font-size: 14px;
+        }
+
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 10px;
+        }
+
+        .table th, .table td {
+            border: 1px solid #ddd;
+            padding: 4px;
+            text-align: center;
+        }
+
+        .table th {
+            background-color: #349F9F;
+            color: white;
+            font-size: 12px;
+        }
+
+        .table td {
+            font-size: 12px;
+        }
+
+        .footer {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+            font-size: 14px
+        }
+
+        .footer table {
+            width: 48%;
+            border-collapse: collapse;
+        }
+
+        .footer table td {
+            border: 1px solid #ddd;
+            padding: 4px;
+            text-align: center;
+        }
+
+        .footer table th {
+            background-color: #349F9F;
+            color: white;
+            font-size: 12px;
+        }
+
+        .notes {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #000;
+            font-size: 10px;
+        }
+
+        .signature {
+            margin-top: 20px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .signature div {
+            width: 48%;
+            text-align: center;
+        }
+
+        .signature img {
+            width: 50px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <img src="https://darvagcloud.com/assets/img/darvagcloud_logo.png" alt="Logo">
+        <div class="header-info">
+            <p>شماره سریال:</p>
+            <p>تاریخ: {{ date }}</p>
+            <p>صورت حساب فروش</p>
+        </div>
+    </div>
+
+    <table class="table">
+        <tr>
+            <th colspan="11">مشخصات فروشنده</th>
+        </tr>
+        <tr>
+            <td>نام شرکت</td>
+            <td colspan="3">شرکت نوآوران زیر ساخت ابری داروگ</td>
+            <td>آدرس</td>
+            <td colspan="6">تهران، میدان هفت تیر، خیابان مانی، پلاک ۴۶</td>
+        </tr>
+        <tr>
+            <td>کد پستی</td>
+            <td colspan="2">1595654919</td>
+            <td></td>
+            <td>شناسه ملی</td>
+            <td>14011378796</td>
+            <td></td>
+            <td>تلفن</td>
+            <td colspan="3">021-42084501</td>
+        </tr>
+        <tr>
+            <td>شماره ثبت</td>
+            <td colspan="2">599552</td>
+            <td></td>
+            <td>شماره اقتصادی</td>
+            <td>14011378796</td>
+            <td></td>
+            <td>فکس</td>
+            <td colspan="3">021-42084208</td>
+        </tr>
+        <tr>
+            <th colspan="11">مشخصات خریدار</th>
+        </tr>
+        <tr>
+            <td>نام شرکت</td>
+            <td colspan="3">{{ company.name }}</td>
+            <td>آدرس</td>
+            <td colspan="6">{{ address }}</td>
+        </tr>
+        <tr>
+            <td>کد پستی</td>
+            <td colspan="2">{{ company.zip_code }}</td>
+            <td></td>
+            <td>شناسه ملی</td>
+            <td>{{ company.register_code }}</td>
+            <td></td>
+            <td>تلفن</td>
+            <td colspan="3">{{ company.phone_number }}</td>
+        </tr>
+        <tr>
+            <td>شماره ثبت</td>
+            <td colspan="2">{{ company.register_code }}</td>
+            <td></td>
+            <td>شماره اقتصادی</td>
+            <td>{{ company.register_code }}</td>
+            <td></td>
+            <td>فکس</td>
+            <td colspan="3">{{ company.fax }}</td>
+        </tr>
+    </table>
+
+    <table class="table" id="product_table">
+        <tr>
+            <th colspan="2">Total Price (IRR)</th>
+            <th colspan="2">Unit Price (IRR)</th>
+            <th>Days</th>
+            <th>QTY</th>
+            <th colspan="6">Description</th>
+            <th>Product</th>
+            <th>Row</th>
+        </tr>
+        <tr>
+            <td colspan="2"></td>
+            <td colspan="2"></td>
+            <td></td>
+            <td></td>
+            <td colspan="6"></td>
+            <td bgcolor="#F2F2F2"></td>
+            <td bgcolor="#F2F2F2"></td>
+        </tr>
+        {% for item in items %}
+            <tr>
+                <td colspan="2"><strong>{{ item.total_price }}</strong></td>
+                <td colspan="2"><strong>{{ item.price }}</strong></td>
+                <td><strong>-</strong></td>
+                <td><strong>{{ item.quantity }}</strong></td>
+                <td colspan="6"><strong>{{ item.comment }}</strong></td>
+                <td bgcolor="#F2F2F2"><strong>{{ item.product.name }}</strong></td>
+                <td bgcolor="#F2F2F2"><strong>{{ forloop.counter }}</strong></td>
+            </tr>
+        {% endfor %}
+        <tr>
+            <td colspan="2"></td>
+            <td colspan="2"></td>
+            <td></td>
+            <td></td>
+            <td colspan="6"></td>
+            <td bgcolor="#F2F2F2"></td>
+            <td bgcolor="#F2F2F2"></td>
+        </tr>
+    </table>
+
+    <div class="footer">
+        <table>
+
+            <tr>
+                <td colspan="4">مبلغ کل ناخالص فاکتور (ریال)</td>
+                <td colspan="3">{{ quote.total_price }}</td>
+            </tr>
+            <tr>
+                <td colspan="4">تخفیف (ریال)</td>
+                <td colspan="3">{{ quote.discount }}</td>
+            </tr>
+            <tr>
+                <td colspan="4">مبلغ فاکتور پس از تخفیف (ریال)</td>
+                <td colspan="3">-</td>
+            </tr>
+            <tr>
+                <td colspan="4">جمع مالیات و عوارض (ریال)</td>
+                <td colspan="3">{{ quote.tax }}</td>
+            </tr>
+            <tr>
+                <td colspan="4" bgcolor="#349F9F">مبلغ کل قابل پرداخت (ریال)</td>
+                <td colspan="3" bgcolor="#349F9F">{{ quote.final_price }}</td>
+            </tr>
+        </table>
+        <table>
+            <tr>
+                <td>شماره حساب: 9652168724</td>
+            </tr>
+            <tr>
+                <td>شماره شبا: IR480120000000009652168726</td>
+            </tr>
+            <tr>
+                <td>بانک ملت</td>
+            </tr>
+            <tr>
+                <td>نوآوران زیرساخت ابری داروگ</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="notes">
+        <p>تخفیف ویژه 10 درصد در نظر گرفته شده است. فضای Backup به میزان مورد نیاز برای پشتیبان گیری روزانه با Retention
+            یک هفته، به صورت Included در تمامی آیتم های ذخیره سازی (Disk) لحاظ شده و از طریق پنل، Backup Policy ، توسط
+            مشتری قابل تنظیم است. در صورت نیاز به فضای بیشتر تماس بگیرید. &nbsp; میزان ترافیک مصرفی در صورت رعایت نسبت
+            10 به 1 (ارسال به دریافت) به صورت رایگان بوده و در صورت استفاده بیشتر مطابق تعرفه دیتاسنتر محاسبه شده و اخذ
+            خواهد شد. پشتیبانی 24*7 به صورت رایگان &nbsp;وتعداد Rule در FW به صورت نامحدود. *مدت زمان اعتبار پیش فاکتور
+            1 هفته از تاریخ صدور &nbsp;می باشد. &nbsp;</p>
+    </div>
+
+    <div class="signature">
+        <div>
+            <p>مهر و امضای فروشنده:</p>
+        </div>
+        <div>
+            <p>مهر و امضای خریدار:</p>
+        </div>
+    </div>
+
+    <div style="text-align: left;">
+
+    </div>
+</div>
+
+</body>
+</html>
