@@ -95,4 +95,4 @@ class Item(BaseModel):
         db_table = 'item'
 
     def __str__(self):
-        return f'{self.product.name} - {self.quantity}'
+        return f'{self.id} - {self.quantity}'

@@ -28,13 +28,13 @@ class BaseAdmin(admin.ModelAdmin):
     display_update_date.short_description = 'Updated At'
 
     list_display = ('display_create_date', 'display_update_date')
-    list_filter = ('created_at', 'updated_at')
     search_fields = ('id',)
     ordering = ('-id',)
 
 
 class UserAdmin(_UserAdmin):
-    list_display = ('id', 'first_name', 'last_name', 'username', 'email', 'age','display_create_date', 'display_update_date')
+    list_display = (
+        'id', 'first_name', 'last_name', 'username', 'email', 'display_create_date', 'display_update_date')
     search_fields = BaseAdmin.search_fields + ('email', 'last_name')
     inlines = (QuoteInline, InvoiceInline)
 

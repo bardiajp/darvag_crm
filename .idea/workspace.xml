@@ -4,12 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6e380d1e-e886-49fd-b66d-96ab73569116" name="Changes" comment="chore : final changes for demo">
+    <list default="true" id="6e380d1e-e886-49fd-b66d-96ab73569116" name="Changes" comment="chore : final changes for demo2">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/accounts/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/accounts/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/accounts/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/accounts/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/order/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/order/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/order/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/order/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/crm/quote_template.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/crm/quote_template.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/product/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/product/models.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -126,7 +126,7 @@
       <workItem from="1741879768052" duration="4900000" />
       <workItem from="1742028288921" duration="11366000" />
       <workItem from="1742040171463" duration="2469000" />
-      <workItem from="1742100611613" duration="21586000" />
+      <workItem from="1742100611613" duration="23877000" />
     </task>
     <task id="LOCAL-00001" summary="chore : modified admin">
       <option name="closed" value="true" />
@@ -176,7 +176,15 @@
       <option name="project" value="LOCAL" />
       <updated>1742124852961</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="chore : final changes for demo2">
+      <option name="closed" value="true" />
+      <created>1742126155968</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1742126155968</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -198,6 +206,7 @@
     <MESSAGE value="chore : migrations" />
     <MESSAGE value="chore : update gitignore" />
     <MESSAGE value="chore : final changes for demo" />
-    <option name="LAST_COMMIT_MESSAGE" value="chore : final changes for demo" />
+    <MESSAGE value="chore : final changes for demo2" />
+    <option name="LAST_COMMIT_MESSAGE" value="chore : final changes for demo2" />
   </component>
 </project>

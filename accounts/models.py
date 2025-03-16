@@ -4,6 +4,7 @@ from django.contrib.auth.models import AbstractUser
 from django.db import models
 from django.utils.translation import gettext as _
 from rest_framework.exceptions import ValidationError
+import jdatetime
 
 
 
@@ -37,19 +38,19 @@ class User(AbstractUser):
     def __str__(self):
         return f'{self.username}'
 
-    @property
-    def age(self):
-        today = date.today()
-        return today.year - self.birth_date.year - (
-                (today.month, today.day) < (self.birth_date.month, self.birth_date.day))
+    # @property
+    # def age(self):
+    #     today = date.today()
+    #     return today.year - self.birth_date.year - (
+    #             (today.month, today.day) < (self.birth_date.month, self.birth_date.day))
 
-    def clean(self):
-        super().clean()
-        today = date.today()
-        if self.birth_date > today:
-            raise ValidationError({'birth_date': _('Birthday cannot be in the future!')})
-        if (today.year - self.birth_date.year) < 0:
-            raise ValidationError({'age': _('Age cannot be negative!')})
+    # def clean(self):
+    #     super().clean()
+    #     today = date.today()
+    #     if self.birth_date > today:
+    #         raise ValidationError({'birth_date': _('Birthday cannot be in the future!')})
+    #     if (today.year - self.birth_date.year) < 0:
+    #         raise ValidationError({'age': _('Age cannot be negative!')})
 
 
 class Company(BaseModel):
