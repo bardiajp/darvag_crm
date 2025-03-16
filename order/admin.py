@@ -61,6 +61,7 @@ class QuoteAdmin(BaseOrderAdmin):
     list_filter = ('id', 'status', 'stage', 'is_active') + BaseOrderAdmin.list_filter
     readonly_fields = ("total_price", "final_price")
     inlines = (ItemInline,)
+    exclude = ("price_after_discount",)
 
     def quote_details(self, obj):
         url = f"/quote-details/{obj.id}"
@@ -96,11 +97,11 @@ class QuoteAdmin(BaseOrderAdmin):
         else:
             discount_amount = 0
 
-        price_after_discount = total_price - discount_amount
+        obj.price_after_discount = total_price - discount_amount
         if obj.tax is not None:
-            obj.final_price = price_after_discount + (price_after_discount * obj.tax / 100)
+            obj.final_price = obj.price_after_discount + (obj.price_after_discount * obj.tax / 100)
         else:
-            obj.final_price = price_after_discount
+            obj.final_price = obj.price_after_discount
 
     def save_model(self, request, obj, form, change):
         with transaction.atomic():

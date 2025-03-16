@@ -67,6 +67,8 @@ class Quote(BaseModel):
     export_file = models.FileField(_("Quote export file"), null=True, blank=True)
     total_price = models.DecimalField(_("Total price"), max_digits=20, decimal_places=2, null=True, blank=True,
                                       default=0)
+    price_after_discount = models.DecimalField(_("Price after discount"), max_digits=20, decimal_places=2, null=True,
+                                               default=0)
     tax = models.DecimalField(_("Tax"), max_digits=20, decimal_places=2, null=True, blank=True)
     discount = models.DecimalField(_("Discount"), max_digits=20, decimal_places=2, null=True, blank=True)
     discount_rate = models.IntegerField(_("Discount rate"), null=True, blank=True)

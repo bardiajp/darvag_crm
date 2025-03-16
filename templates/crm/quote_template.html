@@ -323,7 +323,7 @@
                 <td colspan="2"><strong>{{ item.price }}</strong></td>
                 <td><strong>{{ item.period }}</strong></td>
                 <td><strong>{{ item.quantity }}</strong></td>
-                <td colspan="6"><strong></strong></td>
+                <td colspan="6"><strong>{{ item.comment }}</strong></td>
                 <td bgcolor="#F2F2F2"><strong>{{ item.product.name }}</strong></td>
                 <td bgcolor="#F2F2F2"><strong>{{ forloop.counter }}</strong></td>
             </tr>
@@ -352,7 +352,7 @@
             </tr>
             <tr>
                 <td colspan="4">مبلغ فاکتور پس از تخفیف (ریال)</td>
-                <td colspan="3">-</td>
+                <td colspan="3">{{ quote.price_after_discount }}</td>
             </tr>
             <tr>
                 <td colspan="4">جمع مالیات و عوارض (ریال)</td>
