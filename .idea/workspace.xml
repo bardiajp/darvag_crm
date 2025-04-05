@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6e380d1e-e886-49fd-b66d-96ab73569116" name="Changes" comment="chore : final changes before demo">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
-    </list>
+    <list default="true" id="6e380d1e-e886-49fd-b66d-96ab73569116" name="Changes" comment="chore : Last changes" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -125,6 +122,7 @@
       <workItem from="1742040171463" duration="2469000" />
       <workItem from="1742100611613" duration="24994000" />
       <workItem from="1742188209478" duration="1935000" />
+      <workItem from="1742595771320" duration="99000" />
     </task>
     <task id="LOCAL-00001" summary="chore : modified admin">
       <option name="closed" value="true" />
@@ -190,7 +188,15 @@
       <option name="project" value="LOCAL" />
       <updated>1742129812110</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="chore : Last changes">
+      <option name="closed" value="true" />
+      <created>1742595853066</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1742595853066</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -214,6 +220,7 @@
     <MESSAGE value="chore : final changes for demo" />
     <MESSAGE value="chore : final changes for demo2" />
     <MESSAGE value="chore : final changes before demo" />
-    <option name="LAST_COMMIT_MESSAGE" value="chore : final changes before demo" />
+    <MESSAGE value="chore : Last changes" />
+    <option name="LAST_COMMIT_MESSAGE" value="chore : Last changes" />
   </component>
 </project>
