@@ -53,17 +53,17 @@ class Potential(BaseModel):
 
 class Quote(BaseModel):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    company = models.ForeignKey(Company, on_delete=models.CASCADE)
-    potential = models.ForeignKey(Potential, on_delete=models.CASCADE, null=True, blank=True)
+    # company = models.ForeignKey(Company, on_delete=models.CASCADE)
+    # potential = models.ForeignKey(Potential, on_delete=models.CASCADE, null=True, blank=True)
     subject = models.CharField(_("Quote subject"), max_length=50, null=False, blank=False)
-    stage = models.PositiveSmallIntegerField(_("Quote stage"), choices=StageChoices, null=False, blank=False,
-                                             default=StageChoices.PENDING.value)
+    # stage = models.PositiveSmallIntegerField(_("Quote stage"), choices=StageChoices, null=False, blank=False,
+    #                                          default=StageChoices.PENDING.value)
     status = models.PositiveIntegerField(_("Quote status"), choices=StatusChoices, null=False, blank=False,
                                          default=StatusChoices.DRAFT.value)
     address = models.CharField(_("Quote address"), max_length=255, null=False, blank=False)
     description = models.CharField(_("Quote description"), max_length=255, null=False, blank=False)
     terms_conditions = models.CharField(_("Quote terms conditions"), max_length=255, null=False, blank=False)
-    is_active = models.BooleanField(_("Quote status"), default=True)
+    # is_active = models.BooleanField(_("Quote status"), default=True)
     export_file = models.FileField(_("Quote export file"), null=True, blank=True)
     total_price = models.DecimalField(_("Total price"), max_digits=20, decimal_places=2, null=True, blank=True,
                                       default=0)
@@ -71,13 +71,13 @@ class Quote(BaseModel):
                                                default=0)
     tax = models.DecimalField(_("Tax"), max_digits=20, decimal_places=2, null=True, blank=True)
     discount = models.DecimalField(_("Discount"), max_digits=20, decimal_places=2, null=True, blank=True)
-    discount_rate = models.IntegerField(_("Discount rate"), null=True, blank=True)
+    # discount_rate = models.IntegerField(_("Discount rate"), null=True, blank=True)
     final_price = models.DecimalField(_("Final price"), max_digits=20, decimal_places=2, null=True, blank=True)
 
     class Meta:
         verbose_name = _("Quote")
         verbose_name_plural = _("Quotes")
-        db_table = "quote"
+        # db_table = "quote"
 
     def clean(self):
         super().clean()

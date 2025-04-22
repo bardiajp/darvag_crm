@@ -11,13 +11,50 @@
             font-style: normal;
         }
 
+        /* استایل‌های مشابه تمپلت فاکتور */
+        @font-face {
+            font-family: "darvag";
+            src: url("{% static 'fonts/1.ttf' %}") format('truetype');
+        }
+
+        body {
+            font-family: 'darvag', Tahoma, sans-serif;
+            direction: rtl;
+        }
+
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .table th {
+            background-color: #349F9F;
+            color: white;
+            padding: 10px;
+        }
+
+        .table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+
+        .btn {
+            background-color: #349F9F;
+            color: white;
+            padding: 5px 10px;
+            text-decoration: none;
+            border-radius: 3px;
+        }
+
         body {
             font-family: 'darvag', Tahoma, sans-serif;
             direction: rtl;
             text-align: right;
             margin: 0;
             padding: 0;
-            display: flex;  
+            display: flex;
             justify-content: center;
             align-items: center;
             flex-direction: column;
@@ -297,48 +334,81 @@
             <td colspan="3">{{ company.fax }}</td>
         </tr>
     </table>
-
-    <table class="table" id="product_table">
+    <table class="table" style="border: 3px solid black!important;">
+        <thead>
         <tr>
-            <th colspan="2">Total Price (IRR)</th>
-            <th colspan="2">Unit Price (IRR)</th>
-            <th>Days</th>
-            <th>QTY</th>
-            <th colspan="6">Description</th>
-            <th>Product</th>
+            <th>Starts At</th>
+            <th>Duration</th>
+            <th>Description</th>
+            <th>Package Name</th>
             <th>Row</th>
+
         </tr>
-        <tr>
-            <td colspan="2"></td>
-            <td colspan="2"></td>
-            <td></td>
-            <td></td>
-            <td colspan="6"></td>
-            <td bgcolor="#F2F2F2"></td>
-            <td bgcolor="#F2F2F2"></td>
-        </tr>
-        {% for item in items %}
+
+        </thead>
+        <tbody>
+        {% for package in packages %}
             <tr>
-                <td colspan="2"><strong>{{ item.total_price }}</strong></td>
-                <td colspan="2"><strong>{{ item.price }}</strong></td>
-                <td><strong>{{ item.period }}</strong></td>
-                <td><strong>{{ item.quantity }}</strong></td>
-                <td colspan="6"><strong>{{ item.comment }}</strong></td>
-                <td bgcolor="#F2F2F2"><strong>{{ item.product.name }}</strong></td>
-                <td bgcolor="#F2F2F2"><strong>{{ forloop.counter }}</strong></td>
+                <td>{{ package.duration }} روز</td>
+                <td>{{ package.starts_at|date:"Y-m-d" }}</td>
+                <td>{{ package.description }}</td>
+                <td>{{ package.name }}</td>
+                
+                <td>{{ forloop.counter }}</td>
+
+            </tr>
+            <tr>
+                            <td></td>
+                <td></td>
+                <td></td>
+                <td>
+                    <table class="table" id="product_table">
+                        <tr>
+                            <th colspan="2">Total Price (IRR)</th>
+                            <th colspan="2">Unit Price (IRR)</th>
+                            <th>Days</th>
+                            <th>QTY</th>
+                            <th colspan="6">Description</th>
+                            <th>Product</th>
+                            <th>Row</th>
+                        </tr>
+                        <tr>
+                            <td colspan="2"></td>
+                            <td colspan="2"></td>
+                            <td></td>
+                            <td></td>
+                            <td colspan="6"></td>
+                            <td bgcolor="#F2F2F2"></td>
+                            <td bgcolor="#F2F2F2"></td>
+                        </tr>
+                        {% for item in package.items.all %}
+                            <tr>
+                                <td colspan="2"><strong>{{ item.total_price }}</strong></td>
+                                <td colspan="2"><strong>{{ item.price }}</strong></td>
+                                <td><strong>{{ item.period }}</strong></td>
+                                <td><strong>{{ item.quantity }}</strong></td>
+                                <td colspan="6"><strong>{{ item.comment }}</strong></td>
+                                <td bgcolor="#F2F2F2"><strong>{{ item.product.name }}</strong></td>
+                                <td bgcolor="#F2F2F2"><strong>{{ forloop.counter }}</strong></td>
+                            </tr>
+                        {% endfor %}
+                        <tr>
+                            <td colspan="2"></td>
+                            <td colspan="2"></td>
+                            <td></td>
+                            <td></td>
+                            <td colspan="6"></td>
+                            <td bgcolor="#F2F2F2"></td>
+                            <td bgcolor="#F2F2F2"></td>
+                        </tr>
+                    </table>
+                </td>
+                <td>Items</td>
+
             </tr>
         {% endfor %}
-        <tr>
-            <td colspan="2"></td>
-            <td colspan="2"></td>
-            <td></td>
-            <td></td>
-            <td colspan="6"></td>
-            <td bgcolor="#F2F2F2"></td>
-            <td bgcolor="#F2F2F2"></td>
-        </tr>
+        </tbody>
     </table>
-
     <div class="footer">
         <table>
 

@@ -1,8 +1,9 @@
 import jdatetime
 from django.contrib import admin
 from django.db import transaction
+from django.db.models import Sum
 
-from .models import Item, Product, ProductCategory, ProductGroup, PriceBook
+from .models import Item, Product, ProductCategory, ProductGroup, PriceBook, Package
 
 
 # ---- InLInes ----
@@ -52,7 +53,7 @@ class ProducerGroupAdmin(BaseProductAdmin):
 
 @admin.register(Product)
 class ProductAdmin(BaseProductAdmin):
-    list_display = ('id', 'category', 'name', 'price', 'is_active') + BaseProductAdmin.list_display
+    list_display = ('id', 'category', 'name', 'code', 'price', 'unit', 'is_active') + BaseProductAdmin.list_display
     list_filter = ('id', 'name') + BaseProductAdmin.list_filter
     search_fields = ('id', 'name') + BaseProductAdmin.search_fields
 
@@ -62,6 +63,28 @@ class PriceBookAdmin(BaseProductAdmin):
     list_display = ('id', 'name', 'price', 'discount') + BaseProductAdmin.list_display
     list_filter = ('name',) + BaseProductAdmin.list_filter
     search_fields = ('name',) + BaseProductAdmin.search_fields
+
+
+@admin.register(Package)
+class PackageAdmin(admin.ModelAdmin):
+    list_display = ('id', 'name', 'unit_price', 'total_price', 'starts_at', 'ends_at')
+    list_filter = ('id', 'name', 'starts_at')
+    search_fields = ('id', 'name')
+    ordering = ('-starts_at',)
+    inlines = (ItemInline,)
+
+    def ends_at(self, obj):
+        if obj.starts_at:
+            ends_at = obj.duration + obj.starts_at
+            return ends_at
+
+    def save_model(self, request, obj, form, change):
+        print('in save')
+        with transaction.atomic():
+            sum = obj.items.all().aggregate(Sum('total_price'))['total_price__sum']
+            obj.unit_price = sum
+            obj.total_price = obj.unit_price * obj.duration.days
+            obj.save()
 
 
 @admin.register(Item)

@@ -46,8 +46,8 @@ class Product(BaseModel):
     parent_product = models.ForeignKey('self', on_delete=models.SET_NULL, null=True, blank=True)
     name = models.CharField(_('Name'), max_length=500, null=False, blank=False)
     price = models.IntegerField(_('Price'), null=True, blank=True)
-    product_no = models.CharField(_('Product No'), max_length=50, null=False, blank=False)
     description = models.TextField(_('Description'), max_length=500, null=False, blank=False)
+    unit = models.CharField(_("Unit"), max_length=25)
     stock = models.PositiveIntegerField(_('Stock'), default=1)
     tax = models.DecimalField(_('Tax'), default=0, max_digits=20, decimal_places=2, null=True, blank=True)
     is_active = models.BooleanField(_('is active'), default=True)
@@ -57,6 +57,10 @@ class Product(BaseModel):
         verbose_name = _('Product')
         verbose_name_plural = _('Products')
         db_table = 'product'
+
+    @property
+    def code(self):
+        return f"PR-{self.pk}"
 
     def __str__(self):
         return f'{self.name}'
@@ -77,10 +81,29 @@ class PriceBook(BaseModel):
         return f'{self.name} - {self.price}'
 
 
+class Package(models.Model):
+    quote = models.ForeignKey(Quote, on_delete=models.SET_NULL, null=True, blank=True, related_name='packages')
+    name = models.CharField(_('Name'), max_length=500)
+    duration = models.DurationField(_('Duration'), null=True, blank=True)
+    unit_price = models.DecimalField(_('Unit Price'), max_digits=12, decimal_places=0, null=True, blank=True)
+    total_price = models.DecimalField(_('Total'), max_digits=12, decimal_places=0, null=True, blank=True)
+    description = models.TextField(_('Description'), max_length=500)
+    starts_at = models.DateTimeField(_('Starts at'))
+
+    class Meta:
+        verbose_name = _("Package")
+        verbose_name_plural = _("Packages")
+        db_table = 'package'
+
+    def __str__(self):
+        return f'{self.name} - {self.duration}'
+
+
 class Item(BaseModel):
     quote = models.ForeignKey(Quote, on_delete=models.SET_NULL, null=True, blank=True, related_name='items')
     invoice = models.ForeignKey(Invoice, on_delete=models.SET_NULL, null=True, blank=True)
     product = models.ForeignKey(Product, on_delete=models.SET_NULL, null=True, blank=True)
+    package = models.ForeignKey(Package, on_delete=models.SET_NULL, null=True, blank=True, related_name='items')
     quantity = models.PositiveIntegerField(_('Quantity'), default=1)
     item_price = models.DecimalField(_('Price'), default=0, max_digits=20, decimal_places=2, null=True, blank=True)
     total_price = models.DecimalField(_('Total Price'), default=0, max_digits=20, decimal_places=2, null=True,
